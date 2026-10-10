@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawan Sharma — AI & Business Solutions</title>
+<meta name="description" content="Pawan Sharma — AI solutions, automation and business consulting. Portfolio, projects and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b0d;
+    --bg-2:#0f1114;
+    --surface:#14171b;
+    --surface-2:#1a1e23;
+    --border:rgba(255,255,255,.09);
+    --border-strong:rgba(255,255,255,.16);
+    --text:#f4f5f7;
+    --text-dim:#9aa3ad;
+    --text-faint:#6b737d;
+    --gold:#d9a441;
+    --gold-dim:rgba(217,164,65,.13);
+    --emerald:#2fbf9b;
+    --emerald-dim:rgba(47,191,155,.12);
+    --display:"Bricolage Grotesque",Georgia,serif;
+    --body:"DM Sans",system-ui,-apple-system,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --maxw:1120px;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{
+    font-family:var(--body);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* atmospheric background */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(700px 500px at 78% -8%,rgba(217,164,65,.10),transparent 60%),
+      radial-gradient(650px 480px at 8% 12%,rgba(47,191,155,.08),transparent 60%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;opacity:.4;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 80%);
+            mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 80%);
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(10,11,13,.72);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .brand .mark{
+    width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--gold),#a8782a);
+    color:#0a0b0d;font-weight:800;font-size:16px;
+  }
+  .navlinks{display:flex;align-items:center;gap:6px}
+  .navlinks a{
+    font-size:14.5px;color:var(--text-dim);padding:8px 13px;border-radius:9px;
+    transition:color .2s,background .2s;font-weight:500;
+  }
+  .navlinks a:hover{color:var(--text);background:var(--surface)}
+  .navlinks a.active{color:var(--gold)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;
+    padding:11px 20px;border-radius:11px;border:1px solid transparent;
+    transition:transform .18s,box-shadow .25s,background .2s,border-color .2s;cursor:pointer;
+  }
+  .btn-primary{background:linear-gradient(140deg,var(--gold),#b8862f);color:#0a0b0d}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(217,164,65,.55)}
+  .btn-ghost{border-color:var(--border-strong);color:var(--text);background:transparent}
+  .btn-ghost:hover{background:var(--surface);transform:translateY(-2px)}
+  .menu-btn{display:none;background:none;border:1px solid var(--border-strong);color:var(--text);
+    width:42px;height:42px;border-radius:10px;font-size:18px;cursor:pointer}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:96px 0 84px;position:relative}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--emerald);
+    border:1px solid var(--border);background:var(--emerald-dim);
+    padding:7px 14px;border-radius:100px;margin-bottom:26px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--emerald);
+    box-shadow:0 0 0 4px rgba(47,191,155,.18)}
+  .hero h1{
+    font-family:var(--display);font-weight:800;letter-spacing:-.035em;line-height:1.02;
+    font-size:clamp(42px,7.2vw,82px);max-width:15ch;
+  }
+  .hero h1 .accent{color:var(--gold)}
+  .hero .lede{margin-top:26px;font-size:clamp(17px,2.1vw,20px);color:var(--text-dim);max-width:56ch}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+  .hero-stats{
+    display:flex;flex-wrap:wrap;gap:38px;margin-top:64px;padding-top:34px;
+    border-top:1px solid var(--border);
+  }
+  .stat .n{font-family:var(--display);font-weight:800;font-size:34px;letter-spacing:-.02em;color:var(--text)}
+  .stat .n span{color:var(--gold)}
+  .stat .l{font-size:13.5px;color:var(--text-faint);margin-top:2px}
+
+  /* ---------- SECTION ---------- */
+  section{padding:88px 0}
+  .sec-head{margin-bottom:52px}
+  .sec-label{
+    display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;
+  }
+  .sec-label::before{content:"";width:22px;height:1px;background:var(--gold);display:inline-block}
+  .sec-head h2{
+    font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+    font-size:clamp(30px,4.4vw,46px);max-width:20ch;
+  }
+  .sec-head p{color:var(--text-dim);margin-top:16px;max-width:60ch;font-size:16.5px}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:52px;align-items:start}
+  .about-copy p{color:var(--text-dim);font-size:16.5px;margin-bottom:18px}
+  .about-copy p strong{color:var(--text);font-weight:600}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:26px;
+  }
+  .facts{display:grid;gap:2px}
+  .fact{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--border)}
+  .fact:last-child{border-bottom:none}
+  .fact .k{color:var(--text-faint);font-size:14px}
+  .fact .v{color:var(--text);font-size:14px;font-weight:500;text-align:right}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .skill-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:26px;transition:transform .22s,border-color .22s,background .22s;
+    display:flex;flex-direction:column;
+  }
+  .skill-card .tags{margin-top:auto}
+  .skill-card:hover{transform:translateY(-4px);border-color:var(--border-strong);background:var(--surface-2)}
+  .skill-card .ic{
+    width:44px;height:44px;border-radius:11px;display:grid;place-items:center;margin-bottom:18px;
+    background:var(--gold-dim);color:var(--gold);
+  }
+  .skill-card .ic svg{width:22px;height:22px}
+  .skill-card h3{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em;margin-bottom:9px}
+  .skill-card p{color:var(--text-dim);font-size:14.5px;margin-bottom:16px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{
+    font-family:var(--mono);font-size:11.5px;color:var(--text-dim);
+    border:1px solid var(--border);border-radius:100px;padding:4px 11px;background:var(--bg-2);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .proj{
+    position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:30px;overflow:hidden;transition:transform .22s,border-color .22s;
+    display:flex;flex-direction:column;
+  }
+  .proj::before{
+    content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;
+    background:radial-gradient(400px 200px at 100% 0%,var(--gold-dim),transparent 70%);
+  }
+  .proj:hover{transform:translateY(-4px);border-color:var(--border-strong)}
+  .proj:hover::before{opacity:1}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px;position:relative}
+  .proj .badge{
+    font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--emerald);border:1px solid var(--border);background:var(--emerald-dim);
+    padding:4px 11px;border-radius:100px;
+  }
+  .proj h3{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.015em;margin-bottom:10px;position:relative}
+  .proj p{color:var(--text-dim);font-size:14.5px;margin-bottom:20px;position:relative;flex:1}
+  .proj .stack{display:flex;flex-wrap:wrap;gap:7px;position:relative}
+  .proj .stack span{font-family:var(--mono);font-size:11px;color:var(--text-faint)}
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{position:relative;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--gold),var(--emerald),transparent)}
+  .tl-item{position:relative;padding-bottom:38px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-30px;top:6px;width:14px;height:14px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--gold)}
+  .tl-item .when{font-family:var(--mono);font-size:12.5px;color:var(--emerald);margin-bottom:6px}
+  .tl-item h3{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .tl-item .org{color:var(--text-faint);font-size:14px;margin:3px 0 10px}
+  .tl-item p{color:var(--text-dim);font-size:14.5px;max-width:62ch}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:linear-gradient(150deg,var(--surface),var(--bg-2));
+    border:1px solid var(--border);border-radius:24px;padding:56px 48px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .contact::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(500px 260px at 50% 0%,var(--gold-dim),transparent 70%)}
+  .contact h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;
+    font-size:clamp(30px,4.6vw,48px);position:relative;line-height:1.05}
+  .contact p{color:var(--text-dim);margin:18px auto 34px;max-width:52ch;position:relative;font-size:16.5px}
+  .contact-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+  .contact-mail{margin-top:26px;font-family:var(--mono);font-size:14px;color:var(--text-faint);position:relative}
+
+  footer{border-top:1px solid var(--border);padding:34px 0;margin-top:40px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot p{color:var(--text-faint);font-size:13.5px}
+  .foot .links{display:flex;gap:20px}
+  .foot .links a{color:var(--text-dim);font-size:13.5px;transition:color .2s}
+  .foot .links a:hover{color:var(--gold)}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .about-grid{grid-template-columns:1fr;gap:34px}
+    .skills-grid{grid-template-columns:1fr 1fr}
+    .proj-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:640px){
+    .navlinks{
+      position:absolute;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;
+      background:var(--bg-2);border-bottom:1px solid var(--border);padding:14px;gap:4px;
+      display:none;
+    }
+    .navlinks.open{display:flex}
+    .navlinks a{padding:12px 14px}
+    .nav .btn{display:none}
+    .menu-btn{display:block}
+    .skills-grid{grid-template-columns:1fr}
+    .hero{padding:64px 0 60px}
+    .hero-stats{gap:26px}
+    section{padding:66px 0}
+    .contact{padding:40px 24px}
+    .timeline{padding-left:26px}
+    .tl-item::before{left:-26px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="mark">P</span>Pawan Sharma</a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Get in touch</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <span class="eyebrow"><span class="dot"></span>Available for projects</span>
+    <h1>AI solutions that move <span class="accent">business</span> forward.</h1>
+    <p class="lede">I'm Pawan Sharma — I build practical AI systems, automate workflows, and turn messy business problems into products that ship. From chatbots to analytics dashboards, I focus on outcomes, not buzzwords.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">View my work</a>
+      <a class="btn btn-ghost" href="#contact">Let's talk</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">10<span>+</span></div><div class="l">Projects delivered</div></div>
+      <div class="stat"><div class="n">5<span>+</span></div><div class="l">Industries served</div></div>
+      <div class="stat"><div class="n">100<span>%</span></div><div class="l">Focus on results</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">About</span>
+      <h2>Bridging AI technology and real business needs.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p>I work at the intersection of <strong>artificial intelligence</strong> and <strong>business strategy</strong>. My goal is simple: use AI where it actually helps — cutting manual work, improving decisions, and creating experiences customers remember.</p>
+        <p>Whether it's an AI assistant that answers your customers, an automation that saves your team hours every week, or a data pipeline that finally makes your numbers trustworthy, I take it from idea to a working, deployed product.</p>
+        <p>I care about clean execution: fast builds, clear communication, and systems that keep working long after launch.</p>
+      </div>
+      <div class="card reveal">
+        <div class="facts">
+          <div class="fact"><span class="k">Focus</span><span class="v">AI &amp; Automation</span></div>
+          <div class="fact"><span class="k">Also</span><span class="v">Business Strategy</span></div>
+          <div class="fact"><span class="k">Location</span><span class="v">India</span></div>
+          <div class="fact"><span class="k">Availability</span><span class="v">Open to work</span></div>
+          <div class="fact"><span class="k">Email</span><span class="v">pawansharma546744@gmail.com</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Skills</span>
+      <h2>What I bring to the table.</h2>
+      <p>A mix of technical AI skills and business sense — so solutions actually get used.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a4 4 0 0 0-4 4v1a3 3 0 0 0 0 6v1a4 4 0 0 0 8 0v-1a3 3 0 0 0 0-6V6a4 4 0 0 0-4-4Z"/><path d="M12 9v6"/></svg></div>
+        <h3>AI &amp; Machine Learning</h3>
+        <p>LLM apps, chatbots, RAG pipelines, and predictive models built to solve specific problems.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Prompt Eng.</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 7h.01M8 17h.01"/></svg></div>
+        <h3>Automation &amp; APIs</h3>
+        <p>Connecting tools and removing manual work — workflows, integrations and backend services.</p>
+        <div class="tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">n8n</span><span class="tag">Node</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 4-6"/></svg></div>
+        <h3>Data &amp; Analytics</h3>
+        <p>Turning raw data into dashboards and insights leaders can actually act on.</p>
+        <div class="tags"><span class="tag">SQL</span><span class="tag">Pandas</span><span class="tag">Dashboards</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 18v3M16 18v3"/></svg></div>
+        <h3>Web &amp; Product</h3>
+        <p>Clean, fast front-ends and full-stack apps — from landing pages to internal tools.</p>
+        <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">React</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3>Business Strategy</h3>
+        <p>Understanding the goal first — scoping, prioritising and shipping what matters.</p>
+        <div class="tags"><span class="tag">Consulting</span><span class="tag">Roadmapping</span><span class="tag">Ops</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Delivery &amp; Deployment</h3>
+        <p>Getting work live and stable — Git, cloud deploys and continuous delivery.</p>
+        <div class="tags"><span class="tag">Git</span><span class="tag">Netlify</span><span class="tag">CI/CD</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Selected Work</span>
+      <h2>Projects I'm proud of.</h2>
+      <p>A few examples of AI and business work. Replace these with your own as you grow.</p>
+    </div>
+    <div class="proj-grid">
+      <article class="proj reveal">
+        <div class="proj-top"><span class="badge">AI</span></div>
+        <h3>AI Customer Support Assistant</h3>
+        <p>A retrieval-augmented chatbot that answers customer questions from a company's own documents, cutting response time dramatically while keeping answers accurate and on-brand.</p>
+        <div class="stack"><span>Python</span><span>&middot;</span><span>LLM</span><span>&middot;</span><span>RAG</span><span>&middot;</span><span>Vector DB</span></div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><span class="badge">Automation</span></div>
+        <h3>Business Workflow Automation</h3>
+        <p>Automated a manual, error-prone process across multiple tools — leads captured, enriched and routed automatically, saving the team hours of repetitive work each week.</p>
+        <div class="stack"><span>APIs</span><span>&middot;</span><span>Webhooks</span><span>&middot;</span><span>Node</span></div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><span class="badge">Data</span></div>
+        <h3>Sales Analytics Dashboard</h3>
+        <p>A single dashboard pulling scattered sales data into clear metrics and trends, giving the business a real-time view of performance instead of spreadsheet guesswork.</p>
+        <div class="stack"><span>SQL</span><span>&middot;</span><span>Pandas</span><span>&middot;</span><span>Charting</span></div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><span class="badge">Product</span></div>
+        <h3>Portfolio &amp; Landing Pages</h3>
+        <p>Fast, responsive marketing sites and personal portfolios — hand-built for speed, clarity and a professional first impression, deployed with automatic updates.</p>
+        <div class="stack"><span>HTML/CSS</span><span>&middot;</span><span>JS</span><span>&middot;</span><span>Netlify</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Experience &amp; Education</span>
+      <h2>The path so far.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="when">2024 — Present</div>
+        <h3>AI &amp; Automation Projects</h3>
+        <div class="org">Freelance / Independent</div>
+        <p>Designing and building AI assistants, automations and data tools for businesses — from first conversation to deployed, working product.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="when">2023 — 2024</div>
+        <h3>Business &amp; Data Work</h3>
+        <div class="org">Add your role &amp; company here</div>
+        <p>Worked on business operations and data — learning how decisions get made and where technology genuinely helps. Replace this with your real experience.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="when">Education</div>
+        <h3>Add your degree / course</h3>
+        <div class="org">Your institution</div>
+        <p>Replace with your education details — degree, field and year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="wrap">
+    <div class="contact reveal">
+      <h2>Have a project in mind?</h2>
+      <p>Let's talk about what you're trying to build or fix. I'll tell you honestly if AI helps — and how.</p>
+      <div class="contact-cta">
+        <a class="btn btn-primary" href="mailto:pawansharma546744@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="mailto:pawansharma546744@gmail.com?subject=Project%20enquiry">Start a project</a>
+      </div>
+      <div class="contact-mail">pawansharma546744@gmail.com</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>&copy; <span id="year"></span> Pawan Sharma. Built &amp; deployed with care.</p>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i % 6) * 60 + 'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // active nav link
+  const sections = [...document.querySelectorAll('section[id]')];
+  const links = [...document.querySelectorAll('.navlinks a')];
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+</script>
+</body>
+</html>
